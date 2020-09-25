@@ -45,7 +45,7 @@ def search():
                   <body style="background: #00CED1;">
                     <h1 style="color:#696969;
                     font-family:Impact; margin: 250px 150px 250px;
-                    ">Thank you! <br>This is your result: <br>  {finish_search} <br>We wait you again!</h1>
+                    ">Thank you! Your product was found. <br>This is the product: <br>  {finish_search} <br>We wait you again!</h1>
                   </body>
                 </html>
                 """.format(finish_search=finish_search)
