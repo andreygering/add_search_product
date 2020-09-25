@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Add New Product {% endblock %}</h1>
+
+<form method="post">
+        <label for="title"></label>
+        <input type="text" name="product_name"
+               placeholder="Product Name" class="form-control"
+               value="{{ request.form['product_name'] }}"></input>
+        <label for="content"></label>
+        <input type="number" name="product_price"
+               placeholder="Product Name" class="form-control"
+               value="{{ request.form['product_name'] }}"></input>
+        <input style="padding: 35px 60px;" type="submit" name="add" value="ADD" class="btn-efect"></input>
+        <input style="padding: 35px 60px;" type="reset" name="reset" value="RESET" class="btn-efect">
+</form>
+
+{% endblock %}

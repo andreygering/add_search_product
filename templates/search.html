@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Start Search Product{% endblock %}</h1>
+<form method="post">
+        <label for="title"></label>
+        <input type="text" name="product_name"
+               placeholder="Product Name" class="form-control"
+               value="{{ request.form['product_name'] }}"></input>
+        <label for="content"></label>
+        <input type="number" name="product_price"
+               placeholder="Product Name" class="form-control"
+               value="{{ request.form['product_name'] }}"></input>
+        <input style="padding: 35px 60px;" type="submit" name="search" value="SEARCH" class="btn-efect"></input>
+        <input style="padding: 35px 60px;" type="reset" name="reset" value="RESET" class="btn-efect">
+</form>
+
+
+
+{% endblock %}

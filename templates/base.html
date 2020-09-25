@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/base.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Wendy+One&display=swap" rel="stylesheet">
+    <nav style="font-size: 35px; font-family: Fugaz One; text-align: center;">
+      <a style="text-decoration: none;" class="nav_item" href="http://127.0.0.1:5002/">ADD PRODUCT</a> or
+      <a style="text-decoration: none;" class="nav_item" href="http://127.0.0.1:5002/search">SEARCH PRODUCT</a> 
+    </nav>
+  
+  </head>
+  <body>
+
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>
