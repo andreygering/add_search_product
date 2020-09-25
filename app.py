@@ -1,3 +1,4 @@
+# from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, url_for, flash, redirect
 import sqlite3
 from werkzeug.exceptions import abort
@@ -28,11 +29,27 @@ def search():
             flash('Product Name is required!')
         else:
             conn = get_db_connection()
-            search_result = conn.execute('SELECT * FROM products WHERE product_name IS (?) OR product_price IS (?)',(product_name, product_price)).fetchall()
+            search_result = conn.execute('SELECT * FROM products WHERE product_name IS (?) OR product_price IS (?)',(product_name, product_price)).fetchone()
             finish_search = ", ".join( repr(e) for e in search_result)
+            finish_search = ''.join(list(filter(lambda c: c!=')', finish_search)))
+            finish_search = ''.join(list(filter(lambda c: c!='(', finish_search)))
+            finish_search = ''.join(list(filter(lambda c: c!=',', finish_search)))
+            finish_search = ''.join(list(filter(lambda c: c!="'", finish_search)))
+            finish_search = finish_search + "₪"
             conn.commit()
             conn.close()
-            return finish_search
+            html = """
+                <html>
+                  <head>
+                  </head>
+                  <body style="background: #00CED1;">
+                    <h1 style="color:#696969;
+                    font-family:Impact; margin: 250px 150px 250px;
+                    ">Thank you! <br>This is your result: <br>  {finish_search} <br>We wait you again!</h1>
+                  </body>
+                </html>
+                """.format(finish_search=finish_search)
+            return html
     return render_template('search.html')
 
 #------------------------------------------------------------------------------------------------------

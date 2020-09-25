@@ -1,0 +1,2 @@
+git remote add origin https://github.com/andreygering/add_search_product.git
+git push -u origin master
