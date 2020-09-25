@@ -29,7 +29,7 @@ def search():
             flash('Product Name is required!')
         else:
             conn = get_db_connection()
-            search_result = conn.execute('SELECT * FROM products WHERE product_name IS (?) OR product_price IS (?)',(product_name, product_price)).fetchone()
+            search_result = conn.execute('SELECT product_name, product_price FROM products WHERE product_name IS (?) OR product_price IS (?)',(product_name, product_price)).fetchone()
             finish_search = ", ".join( repr(e) for e in search_result)
             finish_search = ''.join(list(filter(lambda c: c!=')', finish_search)))
             finish_search = ''.join(list(filter(lambda c: c!='(', finish_search)))
