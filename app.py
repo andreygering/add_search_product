@@ -30,26 +30,22 @@ def search():
         else:
             conn = get_db_connection()
             search_result = conn.execute('SELECT DISTINCT product_name, product_price FROM products WHERE product_name IS (?) OR product_price IS (?)',(product_name, product_price)).fetchone()
-            finish_search = ", ".join( repr(e) for e in search_result)
-            finish_search = ''.join(list(filter(lambda c: c!=')', finish_search)))
-            finish_search = ''.join(list(filter(lambda c: c!='(', finish_search)))
-            finish_search = ''.join(list(filter(lambda c: c!=',', finish_search)))
-            finish_search = ''.join(list(filter(lambda c: c!="'", finish_search)))
-            finish_search = finish_search + "₪"
+            name = search_result[0]
+            price = search_result[1]
             conn.commit()
             conn.close()
-            html = """
+            html_result = """
                 <html>
                   <head>
                   </head>
                   <body style="background: #00CED1;">
                     <h1 style="color:#696969;
                     font-family:Impact; margin: 250px 150px 250px;
-                    ">Thank you! Your product was found. <br>This is the product: <br>  {finish_search} <br>We wait you again!</h1>
+                    ">Thank you! Your product was found. <br>This is the result: <br> Product name: {name} <br> Product price: {price}₪ <br> We wait you again!</h1>
                   </body>
                 </html>
-                """.format(finish_search=finish_search)
-            return html
+                """.format(name=name, price=price)
+            return html_result
     return render_template('search.html')
 
 #------------------------------------------------------------------------------------------------------
